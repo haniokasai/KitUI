@@ -20,25 +20,25 @@ class Handler {
 		KitError::class
 	];
 
-	public function getWindowJson(int $windowId, Main $loader, Player $player): string {
+	public function getWindowJson($windowId, Main $loader, Player $player){
 		return $this->getWindow($windowId, $loader, $player)->getJson();
 	}
 
-	public function getWindow(int $windowId, Main $loader, Player $player): Window {
+	public function getWindow($windowId, Main $loader, Player $player){
 		if(!isset($this->types[$windowId])) {
 			throw new \OutOfBoundsException("Tried to get window of non-existing window ID.");
 		}
 		return new $this->types[$windowId]($loader, $player);
 	}
 
-	public function isInRange(int $windowId): bool {
+	public function isInRange($windowId) {
 		if(isset($this->types[$windowId]) || isset($this->types[$windowId + 3200])) {
 			return true;
 		}
 		return false;
 	}
 
-	public function getWindowIdFor(int $windowId): int {
+	public function getWindowIdFor($windowId){
 		if($windowId >= 3200) {
 			return $windowId - 3200;
 		}

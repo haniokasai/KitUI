@@ -21,7 +21,7 @@ class Kit{
     public $timer;
     public $timers = [];
 
-    public function __construct(Main $pl, array $data, string $name){
+    public function __construct(Main $pl, array $data, $name){
         $this->pl = $pl;
         $this->data = $data;
         $this->name = $name;
@@ -34,7 +34,7 @@ class Kit{
         }
     }
 
-    public function getName() : string{
+    public function getName() {
         return $this->name;
     }
 
@@ -93,7 +93,7 @@ class Kit{
 
     }
 
-    public function loadItem(int $id = 0, int $damage = 0, int $count = 1, string $name = "default", ...$enchantments) : Item{
+    public function loadItem($id = 0, $damage = 0, $count = 1, $name = "default", ...$enchantments){
         $item = Item::get($id, $damage, $count);
         if(strtolower($name) !== "default"){
             $item->setCustomName($name);
@@ -116,7 +116,7 @@ class Kit{
         return $item;
     }
 
-    public function loadEffect(string $name = "INVALID", int $seconds = 60, int $amplifier = 1){
+    public function loadEffect($name = "INVALID", $seconds = 60, $amplifier = 1){
         $e = Effect::getEffectByName($name);
         if($e !== null){
             return $e->setDuration($seconds * 20)->setAmbient($amplifier);
@@ -124,7 +124,7 @@ class Kit{
         return null;
     }
 
-    public function getTimerMinutes() : int{
+    public function getTimerMinutes(){
         $min = 0;
         if(isset($this->data["cooldown"]["minutes"])){
             $min += (int) $this->data["cooldown"]["minutes"];
@@ -135,7 +135,7 @@ class Kit{
         return $min;
     }
 
-    public function getTimerLeft(Player $player) : string{
+    public function getTimerLeft(Player $player) {
         if(($minutes = $this->timers[strtolower($player->getName())]) < 60){
             return $this->pl->language->getTranslation("timer-format1", $minutes);
         }
@@ -154,7 +154,7 @@ class Kit{
         }
     }
 
-    public function testPermission(Player $player) : bool{
+    public function testPermission(Player $player) {
         return $player->hasPermission("kit.".strtolower($this->name));
     }
 

@@ -23,26 +23,26 @@ abstract class Window {
 		$this->process();
 	}
 
-	public function getJson(): string {
+	public function getJson(){
 		return json_encode($this->data);
 	}
 
-	public function getLoader(): Loader {
+	public function getLoader(){
 		return $this->pl;
 	}
 
-	public function getPlayer(): Player {
+	public function getPlayer(){
 		return $this->player;
 	}
 	
-	public function navigate(int $menu, Player $player, Handler $windowHandler): void {
+	public function navigate($menu, Player $player, Handler $windowHandler){
 		$packet = new ModalFormRequestPacket();
 		$packet->formId = $windowHandler->getWindowIdFor($menu);
 		$packet->formData = $windowHandler->getWindowJson($menu, $this->pl, $player);
 		$player->dataPacket($packet);
 	}
 	
-	public function navigateKit(int $menu, Player $player, Handler $windowHandler, $kit): void {
+	public function navigateKit($menu, Player $player, Handler $windowHandler, $kit){
 		self::$kit = $kit;
 		$packet = new ModalFormRequestPacket();
 		$packet->formId = $windowHandler->getWindowIdFor($menu);
@@ -50,7 +50,7 @@ abstract class Window {
 		$player->dataPacket($packet);
 	}
 	
-	public function navigateError(int $menu, Player $player, Handler $windowHandler, $error): void {
+	public function navigateError($menu, Player $player, Handler $windowHandler, $error){
 		self::$error = $error;
 		$packet = new ModalFormRequestPacket();
 		$packet->formId = $windowHandler->getWindowIdFor($menu);
@@ -58,7 +58,7 @@ abstract class Window {
 		$player->dataPacket($packet);
 	}
 
-	protected abstract function process(): void;
+	protected abstract function process();
 
-	public abstract function handle(ModalFormResponsePacket $packet): bool;
+	public abstract function handle(ModalFormResponsePacket $packet);
 }

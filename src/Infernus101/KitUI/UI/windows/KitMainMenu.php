@@ -11,7 +11,7 @@ use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
 use pocketmine\Player;
 
 class KitMainMenu extends Window {
-	public function process(): void {
+	public function process(){
 		$url = "";
 		parent::$id = array();
 		$title = $this->pl->language->getTranslation("mainmenu-title");
@@ -35,7 +35,7 @@ class KitMainMenu extends Window {
 		}
 	}
 
-	public function handle(ModalFormResponsePacket $packet): bool {
+	public function handle(ModalFormResponsePacket $packet) {
 		$index = (int) $packet->formData;
 		$windowHandler = new Handler();
 		if(isset(parent::$id[$index])) $kit = parent::$id[$index];

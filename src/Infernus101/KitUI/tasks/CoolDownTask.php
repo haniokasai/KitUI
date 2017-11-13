@@ -14,7 +14,7 @@ class CoolDownTask extends PluginTask{
         $this->plugin = $plugin;
     }
 
-    public function onRun(int $tick){
+    public function onRun($tick){
         foreach($this->plugin->kits as $kit){
             $kit->processTimer();
         }

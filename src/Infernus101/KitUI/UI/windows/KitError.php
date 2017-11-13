@@ -11,7 +11,7 @@ use pocketmine\network\mcpe\protocol\ModalFormResponsePacket;
 use pocketmine\Player;
 
 class KitError extends Window {
-	public function process(): void {
+	public function process() {
 			$title = $this->pl->language->getTranslation("error-title");
 			$this->data = [
 				"type" => "modal",
@@ -32,7 +32,7 @@ class KitError extends Window {
 			break;
 		}
 	}
-	public function handle(ModalFormResponsePacket $packet): bool {
+	public function handle(ModalFormResponsePacket $packet) {
 			$index = $packet->formData;
 			$this->select($index);
 			return true;

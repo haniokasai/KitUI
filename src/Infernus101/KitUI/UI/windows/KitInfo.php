@@ -12,7 +12,7 @@ use pocketmine\Player;
 use onebone\economyapi\EconomyAPI;
 
 class KitInfo extends Window {
-	public function process(): void {
+	public function process(){
 		$info = "";
 		if(parent::$kit != null){
 			$kits = $this->pl->getKit(parent::$kit);
@@ -77,7 +77,7 @@ class KitInfo extends Window {
 			break;
 		}
 	}
-	public function handle(ModalFormResponsePacket $packet): bool {
+	public function handle(ModalFormResponsePacket $packet) {
 			$index = $packet->formData;
 			$this->select($index);
 			return true;

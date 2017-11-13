@@ -64,7 +64,7 @@ class Main extends PluginBase implements Listener {
       $this->getServer()->getLogger()->notice("[KitUI] Disabled! - By Infernus101");
     }
 	
-	public function onCommand(CommandSender $sender, Command $cmd, String $label, array $args): bool{
+	public function onCommand(CommandSender $sender, Command $cmd,$label, array $args){
 	  if(!$sender instanceof Player){
 		  $sender->sendMessage(TextFormat::RED."> Command must be run ingame!");
 		  return true;
@@ -118,7 +118,7 @@ class Main extends PluginBase implements Listener {
           return isset($this->kitused[strtolower($player)]) ? ($obj ? $this->kitused[strtolower($player)] : $this->kitused[strtolower($player)]->getName()) : null;
       }
 
-      public function getKit(string $kit){
+      public function getKit($kit){
           $lower = array_change_key_case($this->kits, CASE_LOWER);
           if(isset($lower[strtolower($kit)])){
               return $lower[strtolower($kit)];
